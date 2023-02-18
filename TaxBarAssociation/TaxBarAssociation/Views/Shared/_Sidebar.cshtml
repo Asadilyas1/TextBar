@@ -1,0 +1,132 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using TaxBarAssociation.Areas.Identity.Data
+@using TaxBarAssociation.Core.Helpers;
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="index3.html" class="brand-link">
+        <img src="~/dashboard/dist/img/AdminLTELogo.png" alt="Tax Bar Associations Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <span class="brand-text font-weight-light">Tax Bar Associations</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img src="~/dashboard/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info">
+                <a href="#" class="d-block">
+                    @UserManager.GetUserName(User).Split('@')[0].ToUpper()
+            </div>
+        </div>
+
+        <!-- SidebarSearch Form -->
+        <div class="form-inline">
+            <div class="input-group" data-widget="sidebar-search">
+                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+                <div class="input-group-append">
+                    <button class="btn btn-sidebar">
+                        <i class="fas fa-search fa-fw"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <!-- Add icons to the links using the .nav-icon class
+         with font-awesome or any other icon font library -->
+                @if (User.IsInRole("Administrator"))
+                {
+                    <li class="nav-item">
+                        <a asp-action="Index" asp-controller="Dashboard" class="nav-link @Html.IsActive("Dashboard", "Index")">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>
+                                Members
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-action="Categories" asp-controller="Blog" class="nav-link @Html.IsActive("Blog", "Categories")">
+                            <i class="nav-icon fas fa-blog"></i>
+                            <p>
+                                Blog Categories
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-action="Index" asp-controller="Blog" class="nav-link @Html.IsActive("Blog", "Index")">
+                            <i class="nav-icon fas fa-blog"></i>
+                            <p>
+                                Blogs
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-action="Index" asp-controller="ReferenceDocument" class="nav-link @Html.IsActive("ReferenceDocument", "Indez")">
+                            <i class="nav-icon fas fa-blog"></i>
+                            <p>
+                                Reference Documents
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-action="Gallery" asp-controller="Dashboard" class="nav-link @Html.IsActive("Dashboard", "Gallery")">
+                            <i class="nav-icon fas fa-image"></i>
+                            <p>
+                                Gallery
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-action="Slider" asp-controller="Dashboard" class="nav-link @Html.IsActive("Dashboard", "Slider")">
+                            <i class="nav-icon fas fa-images"></i>
+                            <p>
+                                Slider
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-action="core-commitee" asp-controller="core" class="nav-link @Html.IsActive("core", "core-commitee")">
+                            <i class="nav-icon fas fa-comments"></i>
+                            <p>
+                                Core Commitee
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-action="Comments" asp-controller="Dashboard" class="nav-link @Html.IsActive("Dashboard", "Comments")">
+                            <i class="nav-icon fas fa-comments"></i>
+                            <p>
+                                Comments
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-action="Settings" asp-controller="Dashboard" class="nav-link @Html.IsActive("Dashboard", "Settings")">
+                            <i class="nav-icon fas fa-cogs"></i>
+                            <p>
+                                Settings
+                            </p>
+                        </a>
+                    </li>
+                }
+                <li class="nav-item">
+                    <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Profile" class="nav-link" id="ProfileTab">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>
+                            Profile
+                        </p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>

@@ -1,0 +1,18 @@
+﻿@model IEnumerable<TaxBarAssociation.Models.Galleries>
+<div class="row">
+    @foreach (var gallery in Model)
+    {
+        <div class="col-md-3">
+            <div class="thumbnail mb-4">
+                <div class="thumb text-center">
+                    <a href="~/Uploads/GalleryImages/@gallery.GalleryImage" data-lightbox="1">
+                        <img src="~/Uploads/GalleryImages/@gallery.GalleryImage" alt="" style="height: 250px !important" class="img-fluid img-thumbnail">
+                    </a>
+                    <div class="text-center">
+                        <a href="javascript:void(0)" onclick="Delete('@gallery.GalleryID')"><i class="fa fa-trash-alt"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

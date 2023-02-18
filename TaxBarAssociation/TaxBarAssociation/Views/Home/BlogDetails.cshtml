@@ -1,0 +1,426 @@
+﻿@model TaxBarAssociation.Core.ViewModels.DetailsViewModel
+@{
+    ViewData["Title"] = "Blog Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+<style>
+    .swiper-container {
+        width: 100%;
+        padding-top: 50px;
+        padding-bottom: 80px;
+    }
+
+    .swiper-slide {
+        background-position: center;
+        background-size: cover;
+        width: 300px;
+        height: 300px;
+    }
+
+    .entry-content {
+        padding: 20px 0px 40px !important;
+    }
+</style>
+<section class="page-title page-title-blank-2 bg-white" id="page-title" style="padding-top: 60px !important">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1 class="d-none">@Model.blogData.Title</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb-wrap">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+                        <li class="breadcrumb-item"><a asp-action="Blogs" asp-controller="Home">blog</a></li>
+                        <li class="breadcrumb-item"><a asp-action="Blogs" asp-controller="Home" asp-route-id="@Model.blogData.CategoryName">@Model.blogData.CategoryName</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">@Model.blogData.Title</li>
+                    </ol>
+                </div>
+                <!-- End .title -->
+            </div>
+            <!-- End .col-lg-8-->
+        </div>
+        <!-- End .row-->
+    </div>
+    <!-- End .container-->
+</section>
+<!-- End #page-title-->
+<!--
+============================
+Blog Single Section
+============================
+-->
+<section class="blog blog-single" id="blog">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-8">
+                <div class="blog-entry">
+                    <div class="entry-img">
+                        <img src="~/Uploads/BlogImages/@Model.blogData.Image" alt="entry image" />
+                        <div class="entry-meta">
+                            <div class="entry-category"><a asp-action="Blogs" asp-controller="Home" asp-route-id="@Model.blogData.CategoryName">@Model.blogData.CategoryName</a></div>
+                            <div class="entry-date"> <span class="day">@Convert.ToDateTime(Model.blogData.Date).ToString("MMM dd")</span><span class="year">@Convert.ToDateTime(Model.blogData.Date).ToString("yyyy")</span></div>
+                            <div class="entry-author"><a asp-action="Blogs" asp-controller="Home" asp-route-id="@Model.blogData.UserName">@Model.blogData.UserName</a></div>
+                            <div class="entry-comments"><span>comments:</span><span class="num">@ViewBag.Comment</span></div>
+                        </div>
+                        <!-- End .entry-meta-->
+                    </div>
+                    <div class="entry-content">
+                        <div class="entry-title">
+                            <h4>@Model.blogData.Title</h4>
+                            <p>@Model.blogData.Description</p>
+                        </div>
+                        <div class="entry-bio">
+                            <p>@Html.Raw(Model.blogData.Content)</p>
+                        </div>
+                    </div>
+                    <div class="nav-posts">
+                        
+                    </div>
+                    <div class="entry-content" id="blogGallery">
+                        <div class="row">
+                            <div class="col-12 col-lg-6">
+                                <div class="section-title" style="margin-bottom: 10px;">
+                                    <h2 style="font-size: 20px;">BLOG GALLERY</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper" id="blog-gallery">
+                                
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                    @if (Model.comments != null)
+                    {
+                        <!-- End .entry-bio-->
+                        <div class="entry-widget entry-comments" id="comments">
+                        </div>
+                        <!-- End .entry-comments-->
+                        <div class="entry-widget entry-add-comment mb-0 clearfix">
+                            <div class="entry-widget-title">
+                                <h4>Leave A Reply</h4>
+                            </div>
+                            <div class="entry-widget-content">
+                                <form class="mb-0" method="post" action="javascript:void(0);">
+                                    <div class="row">
+                                        <input type="hidden" name="Slug" value="@Model.blogData.Slug" />
+                                        <div class="col-12 col-lg-6">
+                                            <input class="form-control" id="commentName" type="text" name="Name" placeholder="Name" />
+                                        </div>
+                                        <div class="col-12 col-lg-6">
+                                            <input class="form-control" id="commentEmail" type="email" name="Email" placeholder="Email" />
+                                        </div>
+                                        <div class="col-12">
+                                            <textarea class="form-control" id="commentInput" rows="2" name="CommentMsg" placeholder="Comment"></textarea>
+                                        </div>
+                                        <div class="col-12">
+                                            <a class="btn btn--primary btn-line btn-line-before" id="addNewCommentBtn" href="#">
+                                                <span>submit comment</span><i class="energia-arrow-right"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- End .entry-comments-->
+                    }
+                </div>
+                <!-- End .blog-entry-->
+            </div>
+            <!-- End .col-lg-8-->
+            <div class="col-12 col-lg-4">
+                <!--
+                ============================
+                Sidebar Blog
+                ============================
+                -->
+                <div class="sidebar sidebar-blog">
+                    <!-- Search-->
+                    <div class="widget widget-search">
+                        <div class="widget-title">
+                            <h5>search</h5>
+                        </div>
+                        <div class="widget-content">
+                            <form class="form-search">
+                                <div class="input-group">
+                                    <input class="form-control" type="text" id="livesearchtags" name="livesearchtags" placeholder="Search ..." autocomplete="off" />
+                                </div>
+                                <!-- End .input-group-->
+                            </form>
+                            <div id="result" class="tag-results">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End .widget-search -->
+                    <!-- Recent Posts-->
+                    <div class="widget widget-recent-posts">
+                        <div class="widget-title">
+                            <h5>recent posts</h5>
+                        </div>
+                        <div class="widget-content" id="recent-blogs">
+                        </div>
+                    </div>
+                    <!-- End .widget-recent-posts -->
+                    <!-- Categories-->
+                    <div class="widget widget-categories">
+                        <div class="widget-title">
+                            <h5>categories</h5>
+                        </div>
+                        <div class="widget-content">
+                            <ul class="list-unstyled" id="blog-categories">
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End .widget-categories -->
+                </div>
+                <!-- End .sidebar-->
+            </div>
+            <!-- End .col-lg-4-->
+        </div>
+        <!-- End .row-->
+    </div>
+    <!-- End .container-->
+</section>
+<script id="comment-template" type="text/x-handlebars-template">
+    <li class="comment-body" id="comment-{{commentId}}" data-id="{{commentId}}">
+        <div class="avatar"><img src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="avatar" /></div>
+        <div class="comment">
+            <h6>{{username}}</h6>
+            <div class="date">{{strCommentDate}}</div>
+            <p>{{commentText}}</p>
+            <a class="reply-link" href="{{commentId}}" data-id="{{commentId}}">Reply</a>
+        </div>
+    </li>
+</script>
+<script id="reply-template" type="text/template">
+    <div class="row" style="background: #eee;padding: 20px 0px;margin: 20px 0px;">
+        <div class="col-sm-4">
+            <div class="thumbnail">
+                <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="panel panel-default">
+                <div class="panel-body row">
+                    <input type="hidden" name="Slug" value="@Model.blogData.Slug" />
+                    <div class="col-12 col-lg-6">
+                        <input class="form-control" id="replyName" type="text" name="Name" placeholder="Name" />
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <input class="form-control" id="replyEmail" type="email" name="Email" placeholder="Email" />
+                    </div>
+                    <div class="col-12">
+                        <textarea class="form-control" id="replyInput" rows="4" style="height: 120px;padding-top: 20px" placeholder="Reply to conversation.."></textarea>
+                    </div>
+                </div>
+                <div class="panel-heading comment-action">
+                    <div class="submit-comment">
+                        <a class="addReplyBtn" style="border: 1px solid;padding: 10px;" href="#">Submit</a>
+                        <input type="hidden" name="hidParentId" class="hidParentId" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        effect: 'coverflow',
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: 'auto',
+        coverflow: {
+            rotate: 20,
+            stretch: 0,
+            depth: 200,
+            modifier: 1,
+            slideShadows: true,
+        },
+        loop: true,
+    });
+</script>
+@section scripts{
+    <script src="~/js/Blog.js" type="text/javascript" asp-append-version="true"></script>
+    <script src="~/js/handlebars-v4.0.12.js"></script>
+    <script>
+        GetComments();
+        function addNewComment(data) {
+            return $.ajax({
+                type: "POST",
+                url: '../addNewComment',
+                data: data,
+                dataType: 'json',
+            });
+        }
+
+        function GetComments() {
+            let Slug = $("[name='Slug']").val();
+            $.ajax({
+                type: "POST",
+                url: '../CommentPartial',
+                data: {
+                    Slug: Slug
+                },
+                dataType: 'html',
+                success: function (response) {
+                    document.getElementById("comments").innerHTML = response;
+                }
+            });
+        }
+        $(function () {
+
+            var source = document.getElementById("comment-template").innerHTML;
+            var template = Handlebars.compile(source);
+
+            $("#addNewCommentBtn").click(function (e) {
+                e.preventDefault();
+                var data = {
+                    parentId: 0,
+                    commentText: $("#commentInput").val(),
+                    username: $("#commentName").val(),
+                    email: $("#commentEmail").val(),
+                    blogId: "@Model.blogData.BlogID"
+                };
+
+                $.when(addNewComment(data)).then(function (response) {
+                    if (response.error == false) {
+                        var $commentHtml = template(response.result);
+                        $(".comments-list").append($commentHtml);
+                        $("#commentName").val('');
+                        $("#commentEmail").val('');
+                        $("#commentInput").val('');
+                    } else {
+                        console.log("An error has occured");
+                    }
+                }).fail(function (err) {
+                    console.log(err);
+                })
+            });
+
+
+            $(document).on("click", ".reply-link", function (e) {
+                e.preventDefault();
+                var $self = $(this);
+                var $commentListItem = $self.parents(".comment-body");
+                if ($self.attr("data-id") == $commentListItem.attr("data-id")) {
+                    var replySource = document.getElementById("reply-template").innerHTML;
+                    $("#comment-" + $self.attr("data-id")).html(replySource);
+                    //$commentListItem.after(replySource);
+                }
+
+                $(document).find(".hidParentId").val($self.attr("href"));
+
+            });
+
+            $(document).on("click", ".addReplyBtn", function (e) {
+                e.preventDefault();
+                var $self = $(this);
+                var $replyName = $(document).find("#replyName").val();
+                var $replyEmail = $(document).find("#replyEmail").val();
+                var $replyInput = $(document).find("#replyInput").val();
+                var parentId = $(document).find(".hidParentId").val();
+                var $repliesUL = $(document).find("ul[data-parentid='" + parentId + "']");
+                var $commentBody = $(document).find("[data-id='" + parentId + "']");
+                var replyULCount = $repliesUL.length;
+
+                var data = {
+                    parentId: parentId,
+                    commentText: $replyInput,
+                    username: $replyName,
+                    email: $replyEmail,
+                    blogId: "@Model.blogData.BlogID"
+                };
+
+                $.when(addNewComment(data)).then(function (response) {
+                    if (response.error == false) {
+                        GetComments();
+                        //var commentHtml = template(response.result);
+
+                        //if (replyULCount > 0) {
+                        //    $repliesUL.append(commentHtml);
+                        //} else {
+
+                        //    $commentBody.append("<ul class='replies-list replies'></ul>")
+                        //        .append(commentHtml);
+                        //}
+
+                        $(document).find(".reply-form").remove();
+
+                    } else {
+                        console.log("An error has occured");
+                    }
+                }).fail(function (err) {
+                    console.log(err);
+                })
+
+            });
+
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            $.ajax({
+                url: "/Home/LoadBlogGallery",
+                contentType: "application/html; charset=utf-8",
+                type: "POST",
+                cache: false,
+                data: {
+                    Slug: '@Model.blogData.Slug'
+                },
+                dataType: "html"
+            }).done(function (result) {
+                $("#blogGallery").show();
+                $("#blog-gallery").html(result);
+            }).fail(function(error){
+                $("#blogGallery").hide();
+                $("#blog-gallery").html('');
+            });
+
+            $.ajax({
+                url: "/Home/RecentBlogs",
+                contentType: "application/html; charset=utf-8",
+                type: "GET",
+                cache: false,
+                dataType: "html"
+            }).done(function (result) {
+                $("#recent-blogs").html(result);
+            });
+
+            $.ajax({
+                url: "/Home/BlogCategories",
+                contentType: "application/html; charset=utf-8",
+                type: "GET",
+                cache: false,
+                dataType: "html"
+            }).done(function (result) {
+                $("#blog-categories").html(result);
+            });
+
+            $.ajax({
+                url: "/Home/BlogPaging",
+                contentType: "application/html; charset=utf-8",
+                type: "POST",
+                cache: false,
+                data: {
+                    BlogID: '@Model.blogData.BlogID'
+                },
+                dataType: "html"
+            }).done(function (result) {
+                $(".nav-posts").show();
+                $(".nav-posts").html(result);
+            }).fail(function(error){
+                $(".nav-posts").hide();
+                $(".nav-posts").html('');
+            });
+        });
+    </script>
+
+}

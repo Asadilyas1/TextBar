@@ -1,0 +1,22 @@
+﻿@model TaxBarAssociation.Core.ViewModels.DetailsViewModel
+
+<div class="prev-post">
+    @if (Model.Prev != null)
+    {
+        var items = Model.Prev;
+        <div class="post-img">
+            <div class="overlay"> <i class="energia-arrow-right"></i></div><img src="~/Uploads/BlogImages/@items.BlogImage" alt="title" />
+        </div>
+        <div class="post-body"><span>previous post</span><a class="post-link" asp-action="BlogDetails" asp-controller="Home" asp-route-id="@items.Slug">@items.Title</a></div>
+    }
+</div>
+<div class="next-post">
+    @if (Model.Next != null)
+    {
+        var items = Model.Next;
+        <div class="post-body"><span>next post</span><a class="post-link" asp-action="BlogDetails" asp-controller="Home" asp-route-id="@items.Slug">@items.Title</a></div>
+        <div class="post-img">
+            <div class="overlay"> <i class="energia-arrow-right"></i></div><img src="~/Uploads/BlogImages/@items.BlogImage" alt="title" />
+        </div>
+    }
+</div>

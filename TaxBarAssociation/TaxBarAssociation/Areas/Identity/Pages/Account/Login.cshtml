@@ -1,0 +1,57 @@
+﻿@page
+@model LoginModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Login - Tax Bar Association";
+}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="~/login/css/style.css" asp-append-version="true">
+<div id="main-login">
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12 text-center mb-2">
+                    <h2 class="heading-section">Login</h2>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="login-wrap p-0">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <form id="account" method="post" class="signin-form">
+                            <div class="form-group">
+                                <label asp-for="Input.Email" class="form-label"></label>
+                                <input asp-for="Input.Email" class="form-control" style="color: black !important" autocomplete="username" placeholder="Email" aria-required="true" />
+                            </div>
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                            <div class="form-group">
+                                <label asp-for="Input.Password" class="form-label"></label>
+                                <input asp-for="Input.Password" id="password-field" style="color: black !important" class="form-control" placeholder="Password" autocomplete="current-password" aria-required="true" />
+                                <span toggle="#password-field" style="color: black !important" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                            </div>
+                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+                            <div class="form-group d-md-flex">
+                                <div class="w-50">
+                                    <label asp-for="Input.RememberMe" class="checkbox-wrap checkbox-primary">
+                                        @Html.DisplayNameFor(m => m.Input.RememberMe)
+                                        <input class="form-check-input" asp-for="Input.RememberMe" />
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button id="login-submit" type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script src="~/login/js/jquery.min.js"></script>
+<script src="~/login/js/popper.js"></script>
+<script src="~/login/js/bootstrap.min.js"></script>
+<script src="~/login/js/main.js"></script>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

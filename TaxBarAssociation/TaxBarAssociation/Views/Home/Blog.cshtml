@@ -1,0 +1,91 @@
+﻿@model TaxBarAssociation.Core.ViewModels.BlogViewModel
+@{
+    ViewData["Title"] = "Blog";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="blog blog-grid blog-grid-5" id="blog">
+    <div class="container">
+        <div class="row">
+            <div class="col section-title-s3">
+                <h2>Our Blog</h2>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var item in Model.blogModel.blogs)
+            {
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="blog-entry" data-hover="">
+                        <div class="entry-content">
+                            <div class="entry-meta">
+                                <div class="entry-date"><span class="day">@Convert.ToDateTime(item.Date).ToString("MMM dd")</span><span class="year">@Convert.ToDateTime(item.Date).ToString("yyyy")</span></div>
+                                <!-- End .entry-date		-->
+                                <div class="entry-author">
+                                    <p>@item.UserName</p>
+                                </div>
+                            </div>
+                            <div class="entry-title">
+                                <h4>
+                                    <a asp-action="BlogDetails" asp-controller="Home" asp-route-id="@item.Slug">
+                                        @item.Title
+                                    </a>
+                                </h4>
+                            </div>
+                            <div class="entry-img-wrap">
+                                <div class="entry-img">
+                                    <a asp-action="BlogDetails" asp-controller="Home" asp-route-id="@item.Slug">
+                                        <img src="~/Uploads/BlogImages/@item.Image" loading="lazy"
+                                         alt="@item.Title" />
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- End .entry-img-->
+                            <div class="entry-bio entry-escription">
+                                <p>@item.Description</p>
+                            </div>
+                            <div class="entry-more">
+                                <a class="btn btn--white btn-bordered" asp-action="BlogDetails" asp-controller="Home" asp-route-id="@item.Slug">
+                                    read more <i class="energia-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End .entry-content-->
+                </div>
+            }
+        </div>
+        <!-- End .row-->
+        @if (Model.blogModel.PageCount > 12)
+        {
+            <div class="row">
+                <div class="col-12 text--center">
+                    <form asp-action="Blog" asp-controller="Home" method="post">
+                        <input type="hidden" name="id" value="@Model.CatName" />
+                        <div class="col-12 text-center">
+                            <ul class="pagination">
+                                @for (int i = 1; i <= Model.blogModel.PageCount; i++)
+                                {
+                                    if (i != Model.blogModel.CurrentPageIndex)
+                                    {
+                                        <li><a class="btn btn--white justify-content-center" href="javascript:PagerClick(@i);">@i</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a class="current" href="javascript:PagerClick(@i);">@i</a></li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                        <input type="hidden" id="hfCurrentPageIndex" name="currentPageIndex" />
+                    </form>
+                </div>
+                <!-- End .col-lg-12-->
+            </div>
+        }
+        <!-- End .row-->
+    </div>
+    <!-- End .container-->
+</section>
+
+
+

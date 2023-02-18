@@ -1,0 +1,111 @@
+﻿@model IEnumerable<TaxBarAssociation.Models.ReferenceDocument>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+<br />
+<br />
+<p class="text-center">
+    list of Reference Document
+</p>
+<div class="container">
+
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <a asp-action="AddDocument" asp-controller="ReferenceDocument" class="btn btn-primary mt-3">Create New</a>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr class="text-center">
+                                    <th>Open Model</th>
+                                    <th>Read Document</th>
+                                    <th>Document Year</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @{
+                                    if (Model.Any())
+                                    {
+                                        foreach (var item in Model)
+                                        {
+                                            <tr class="text-center">
+
+
+                                                <td>
+                                                    <a href="javascript:void(0)" onclick="OpenPDF('@item.DocumentName')">
+                                                        <i class="fa fa-file-pdf btn-lg "></i>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="~/PDF/@item.DocumentName" target="_blank">
+                                                        <i class="fa fa-file-pdf btn-lg "></i>
+                                                    </a>
+                                                </td>
+
+                                                <td>@item.DocumentYear</td>
+                                                <td>
+                                                    <a class="btn btn-warning btn-sm" asp-action="EditDocument" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a>
+
+                                                    <a class="btn btn-success btn-sm" asp-action="GetPdf" asp-route-id="@item.Id"><i class="fa fa-file-download"></i></a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="3" style="text-align: center">No Data Found!</td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+             <iframe id="LoadPDF" height="100"></iframe>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+    function OpenPDF(id) {
+
+        $("#LoadPDF").attr('src', `../../PDF/${id}`);
+        $("#exampleModalLong").modal({ backdrop: 'static', keyborad: false }, 'show');
+    }
+</script>
+
+

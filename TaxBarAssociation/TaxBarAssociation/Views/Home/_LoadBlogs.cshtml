@@ -1,0 +1,45 @@
+﻿@model IEnumerable<TaxBarAssociation.Models.BlogData>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-12 col-lg-6">
+            <div class="blog-entry" data-hover="">
+                <div class="entry-content">
+                    <div class="entry-meta">
+                        <div class="entry-date"><span class="day">@Convert.ToDateTime(item.Date).ToString("MMM dd")</span><span class="year">@Convert.ToDateTime(item.Date).ToString("yyyy")</span></div>
+                        <!-- End .entry-date		-->
+                        <div class="entry-author">
+                            <p>@item.UserName</p>
+                        </div>
+                    </div>
+                    <div class="entry-title">
+                        <h4>
+                            <a asp-action="BlogDetails" asp-controller="Home" asp-route-id="@item.Slug">
+                                @item.Title
+                            </a>
+                        </h4>
+                    </div>
+                    <div class="entry-img-wrap">
+                        <div class="entry-img">
+                            <a asp-action="BlogDetails" asp-controller="Home" asp-route-id="@item.Slug">
+                                <img src="~/Uploads/BlogImages/@item.Image"
+                                 alt="@item.Title" />
+                            </a>
+                        </div>
+                    </div>
+                    <!-- End .entry-img-->
+                    <div class="entry-bio">
+                        <p>@item.Description</p>
+                    </div>
+                    <div class="entry-more">
+                        <a class="btn btn--white btn-bordered" asp-action="BlogDetails" asp-controller="Home" asp-route-id="@item.Slug">
+                            read more <i class="energia-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- End .entry-content-->
+        </div>
+    }
+</div>

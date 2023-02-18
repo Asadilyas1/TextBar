@@ -1,0 +1,8 @@
+﻿@model IEnumerable<TaxBarAssociation.Models.BlogGallery>
+
+@foreach (var gallery in Model)
+{
+    <div class="swiper-slide"
+     style="background-image:url(../../Uploads/BlogGallery/@gallery.Images)">
+    </div>
+}

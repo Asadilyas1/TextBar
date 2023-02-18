@@ -1,0 +1,118 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tax Bar Association - @ViewData["Title"]</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/dashboard/plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="~/dashboard/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/dashboard/dist/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="~/dashboard/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="~/dashboard/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/dashboard/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/dashboard/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <!-- fileupload-custom css -->
+    <link rel="stylesheet" href="~/dashboard/dropify/css/dropify.min.css">
+    <!-- fileupload-custom css -->
+    <link rel="stylesheet" href="~/css/dropzone.min.css">
+    <!--lightbox css -->
+    <link rel="stylesheet" href="~/css/lightbox.min.css">
+    <link rel="stylesheet" href="~/ssi-uploader/styles/ssi-uploader.css" />
+    <style>
+        body {
+            font-size: 14px !important;
+        }
+
+        .sidebar-dark-primary .nav-sidebar > .nav-item > .nav-link.active, .sidebar-light-primary .nav-sidebar > .nav-item > .nav-link.active {
+            background: #d64635;
+            border-top-color: transparent;
+            color: #fff;
+        }
+    </style>
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+
+      <!-- Preloader -->
+      <div class="preloader flex-column justify-content-center align-items-center">
+            <img class="animation__shake" src="../../TBA_Logo.png" alt="AdminLTELogo" height="60" width="60">
+      </div>
+
+      <!-- Navbar -->
+      <partial name="_Navbar"/>
+      <!-- /.navbar -->
+
+      <!-- Main Sidebar Container -->
+      <partial name="_Sidebar"/>
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        @RenderBody()
+      </div>
+      <!-- /.content-wrapper -->
+      <footer class="main-footer">
+        <strong>Copyright &copy; 2022 <a href="javascript:void(0);">Tax Bar Association</a>.</strong>
+        All rights reserved.
+      </footer>
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- jQuery -->
+    <script src="~/dashboard/plugins/jquery/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="~/dashboard/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="~/dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="~/dashboard/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="~/dashboard/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/dashboard/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/dashboard/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/dashboard/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="~/dashboard/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/dashboard/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/dashboard/dist/js/adminlte.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="~/ckeditor/ckeditor.js"></script>
+    <script src="~/ckeditor/samples/js/sample.js"></script>
+    <script src="~/dashboard/dropify/js/dropify.min.js"></script>
+    <script src="~/js/dropify.js"></script>
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+        $(function () {
+            $("#example1").DataTable({
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-8:eq(0)');
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        });
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

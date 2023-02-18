@@ -1,0 +1,36 @@
+﻿@using TaxBarAssociation.Models;
+@model List<Blog>
+<style>
+    .search-tag-detail {
+        display: flex;
+        flex-direction: row;
+        padding: 5px 10px;
+        background-color: #D65F10;
+        color: #FFF;
+        border-radius: 3px;
+    }
+
+    .search-tag {
+        display: flex;
+        margin: 2px 2px 2px 0px;
+    }
+
+    .tag-results {
+        display: flex;
+        flex-direction: row;
+    }
+</style>
+@foreach (var item in Model)
+{
+    <div class="search-tag" id="@item.Slug" >
+        <a asp-action="BlogDetails" asp-controller="Home" asp-route-id="@item.Slug">
+            <div class="search-tag-detail">
+            @item.Title
+            @* <span class="search-tag-close" >
+                 <i class="fa fa-times "></i>
+             </span> *@
+        </div>
+        </a>
+</div>
+
+}

@@ -1,0 +1,180 @@
+﻿@model TaxBarAssociation.Models.Sliders
+@{
+    ViewData["Title"] = "Slider";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+<link href="~/css/Gallery.css" rel="stylesheet" asp-append-version="true" />
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Slider</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Slider</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <form asp-action="Slider" asp-controller="Dashboard" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title" style="float: left">List of Slider's</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="input-group mb-3">
+                                        <div class="image-box" style="width: 100%;">
+                                            @{
+                                                var Image = "https://ultranews.thesky9.com/vendor/core/core/base/images/placeholder.png";
+                                                if (Model != null)
+                                                {
+                                                    Image = "../../Uploads/SliderImages/" + Model.SliderImage;
+                                                }
+                                                <input type="hidden" name="OldImage" value="@Image" />
+                                            }
+                                            <input type="file" asp-for="imageFile" id="Image" onchange="readURL(this);" style="display:none" />
+                                            <div class="preview-image-wrapper">
+                                                <img src="@Image"
+                                                     alt="Preview image" id="preview_image" title="Remove image" />
+                                                <a class="btn_remove" title=""><i class="fa fa-times"></i></a>
+                                            </div>
+                                            <div class="image-box-actions">
+                                                <a href="javascript:void(0);" class="btn_gallery" onclick="$('#Image').trigger('click');"
+                                                   data-result="image" data-action="select-image" data-allow-thumb="1">
+                                                    Choose image
+                                                </a>
+                                            </div>
+                                            @if (Model == null)
+                                            {
+                                                <span asp-validation-for="imageFile" class="text-danger"></span>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+            <!-- right column -->
+                <div class="col-md-3">
+                    <!-- Form Element sizes -->
+                    <div class="card card-danger">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                Publish
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary" name="Save" style="font-size: 14px;">
+                                            <i class="fa fa-save"></i>&nbsp;&nbsp;Publish
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                <!-- /.card -->
+                <!-- general form elements disabled -->
+                <div class="card card-danger">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            Order By
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <input type="number" min="0" asp-for="Ord" class="form-control" id="Ord" placeholder="Exp: 0">
+                                    <span asp-validation-for="Ord" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+                <!-- general form elements disabled -->
+                <div class="card card-danger">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            Visibility
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <div class="onoffswitch">
+                                        <input type="hidden" asp-for="Visibility" id="Visibility" value="0">
+                                        <input type="checkbox" class="onoffswitch-checkbox" name="is_visible" id="is_visible" value="1">
+                                        <label class="onoffswitch-label" for="is_visible">
+                                            <span class="onoffswitch-inner"></span>
+                                            <span class="onoffswitch-switch"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!--/.col (right) -->
+        </div>
+            </form>
+        <!-- /.row -->
+        <div class="row">
+            <!-- [ Gallery-Grid ] start -->
+            <div class="col-sm-12">
+                <!-- [ Image-Grid ] start -->
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Slider Images</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="LoadSlider"></div>
+                    </div>
+                </div>
+                <!-- [ Image-Grid ] end -->
+            </div>
+            <!-- [ Gallery-Grid ] end -->
+        </div>
+        <!-- [ Main Content ] end -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+@section Scripts {
+    <script src="~/js/Slider.js" asp-append-version="true"></script>
+    <script>
+        document.getElementsByName("Visibility")[0].value = "@if (Model != null)
+        {
+            @Model.Visibility
+        }";
+        if ($("[name='Visibility']").val() == 1) {
+            $("#is_visible").prop('checked', true);
+            }
+    </script>
+}
+

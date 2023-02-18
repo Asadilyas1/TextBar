@@ -1,0 +1,31 @@
+﻿@model IEnumerable<TaxBarAssociation.Models.Sliders>
+<div class="table-responsive">
+    <table id="SliderDatatable" width="100%" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>S.No.</th>
+                <th>Image</th>
+                <th>Order By</th>
+                <th>Operations</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var i = 1;
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@i</td>
+                        <td><img src="../../Uploads/SliderImages/@item.SliderImage" width="50" alt="No Image" /></td>
+                        <td>@item.Ord</td>
+                        <td>
+                            <a asp-action="Slider" asp-controller="Dashboard" asp-route-id="@item.SliderID" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+                            <a href="javascript:void(0)" onclick="Delete('@item.SliderID')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    i = i + 1;
+                }
+            }
+        </tbody>
+    </table>
+</div>

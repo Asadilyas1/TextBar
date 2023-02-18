@@ -1,0 +1,13 @@
+﻿@model IEnumerable<TaxBarAssociation.Models.BlogData>
+@foreach(var item in Model)
+{
+    <!-- Start .Post-->
+    <div class="post">
+        <div class="post-img"><img src="~/Uploads/BlogImages/@item.Image" alt="post img" /></div>
+        <div class="post-content">
+            <div class="post-date"><span class="day">@Convert.ToDateTime(item.Date).ToString("MMM dd")</span><span class="year">@Convert.ToDateTime(item.Date).ToString("yyyy")</span></div>
+            <div class="post-title"><a asp-action="BlogDetails" asp-controller="Home" asp-route-id="@item.Slug">@item.Title </a></div>
+        </div>
+    </div>
+    <!-- End .post-->
+}

@@ -1,0 +1,6 @@
+﻿@model IEnumerable<TaxBarAssociation.Models.Category>
+
+@foreach (var items in Model)
+{
+    <li><a asp-action="Blog" asp-controller="Home" asp-route-id="@items.Name">@items.Name</a><span>@items.Blogs.Count()</span></li>
+}

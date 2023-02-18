@@ -1,0 +1,70 @@
+﻿@model TaxBarAssociation.Models.GalleryModel
+@{
+    ViewData["Title"] = "Gallery";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!--
+============================
+Projects Gallery Section
+============================
+-->
+<section class="projects projects-gallery">
+    <div class="container">
+        <div class="row">
+            <div class="col section-title-s3">
+                <h2>Our Gallery</h2>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var gallery in Model.galleries)
+            {
+                <div class="col-12 col-md-4 col-lg-3 team-item ">
+                    <div class="project-panel">
+                        <div class="project-panel-holder">
+                            <div class="project-img">
+                                <div style="background-image: url('../../Uploads/GalleryImages/@gallery.GalleryImage'); height: 160px;width: 250px; background-size: cover; background-repeat: no-repeat"></div>
+                                @*<img src="~/Uploads/GalleryImages/@gallery.GalleryImage" class="img-responsive" style="height: 166px !important;width: 250px !important;" alt=" item" />*@
+                                <div class="project-hover">
+                                    <div class="project-action">
+                                        <div class="project-zoom"><i class="far fa-eye"></i><a class="img-gallery-item" href="~/Uploads/GalleryImages/@gallery.GalleryImage" title="wind generators item"></a></div>
+                                    </div>
+                                    <!-- End .project-action -->
+                                </div>
+                                <!-- End .project-hover-->
+                            </div>
+                            <!-- End .project-img-->
+                        </div>
+                        <!-- End .project-panel-holder-->
+                    </div>
+                    <!-- End .project-panel-->
+                </div>
+            }
+        </div>
+        <div class="row">
+            <form asp-action="Gallery" asp-controller="Home" method="post">
+                <div class="col-12 text-center">
+                    @for (int i = 1; i <= Model.PageCount; i++)
+                    {
+                        var acc = "";
+                        @if (i == Model.CurrentPageIndex)
+                        {
+                            acc = "active-gallery";
+                        }
+                        @if (i != Model.CurrentPageIndex)
+                        {
+                            <a class="btn btn--white justify-content-center @acc" href="javascript:PagerClick(@i);">@i</a>
+                        }
+                        else
+                        {
+                            <span class="btn btn--white justify-content-center @acc">@i</span>
+                        }
+                    }
+                </div>
+                <input type="hidden" id="hfCurrentPageIndex" name="currentPageIndex" />
+            </form>
+        </div>
+        <!-- End .row-->
+    </div>
+    <!-- End .container-->
+</section>
+

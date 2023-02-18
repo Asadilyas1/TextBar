@@ -1,0 +1,98 @@
+﻿
+@{
+    ViewData["Title"] = "Contact Us";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!--
+      ============================
+      Google Map Section
+      ============================
+      -->
+<section class="map map-2">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h3 class="d-none">our office map</h3>
+            </div>
+        </div>
+    </div>
+    <iframe src="" id="map-frame" width="600" height="450" style="border:0;"></iframe>
+</section>
+<!--
+============================
+Testimonials #5 Section
+============================
+-->
+<section class="testimonial testimonial-5 bg-overlay bg-overlay-white2">
+    <div class="bg-section"><img src="~/website/images/background/wavy-pattern.png" alt="background" /></div>
+    <div class="container">
+        <div class="contact-panel contact-panel-2">
+            <div class="row">
+                <div class="col-12 col-lg-5 img-card-holder">
+                    <div class="img-card img-card-2 bg-overlay bg-overlay-theme">
+                        <div class="bg-section"><img src="~/website/images/contact/2.jpg" alt="image" /></div>
+                        <div class="card-content">
+                            <div class="content-top">
+                                <p id="contact-text"></p><a class="location"></a>
+                            </div>
+                            <div class="content-bottom">
+                                <ul class="list-unstyled contact-infos">
+                                    <li class="contact-info">
+                                        <i class="energia-phone-Icon"></i>
+                                        <p>Contact Line: <a href="" id="telephone"></a></p>
+                                    </li>
+                                    <li class="contact-info">
+                                        <i class="energia-location-Icon"></i>
+                                        <p>Location: <a class="location"></a></p>
+                                    </li>
+                                    <li class="contact-info">
+                                        <i class="energia-clock-Icon"></i>
+                                        <p id="timing"></p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-7">
+                    <div class="contact-card">
+                        <div class="contact-body">
+                            <h5 class="card-heading">get in touch</h5>
+                            <p class="card-desc">We take great pride in everything that we do, control over products allows us to ensure our customers receive the best quality service.</p>
+                            <form class="contactForm" method="post">
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <input class="form-control" type="text" id="contact-name" name="contact-name" placeholder="Name" required="" />
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <input class="form-control" type="text" id="contact-email" name="contact-email" placeholder="Email" required="" />
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <input class="form-control" type="text" id="contact-phone" name="contact-phone" placeholder="Phone" required="" />
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <input class="form-control" type="text" id="contact-phone" name="contact-subject" placeholder="Subject" required="" />
+                                    </div>
+                                    <div class="col-12">
+                                        <textarea class="form-control" id="contact-infos" placeholder="additional information" name="contact-infos" cols="30" rows="10"></textarea>
+                                    </div>
+                                    <div class="col-12">
+                                        <button class="btn btn--secondary">submit request <i class="energia-arrow-right"></i></button>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="contact-result"></div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- End .contact-body -->
+                    </div>
+                </div>
+            </div>
+            <!-- End .row-->
+        </div>
+        <!-- End .contact-panel-->
+    </div>
+    <!-- End .container-->
+</section>
+

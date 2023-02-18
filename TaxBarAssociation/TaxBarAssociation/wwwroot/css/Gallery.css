@@ -1,0 +1,226 @@
+﻿
+.dropzone {
+    background: white;
+    border-radius: 5px;
+    border: 2px dashed rgb(0, 135, 247);
+    border-image: none;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dz-button {
+    background: #eeeeee;
+    border: none;
+    padding: 10px 20px;
+}
+
+.preview-image-wrapper {
+    background: #fafbfc;
+    border: 1px solid rgba(195, 207, 216, .3);
+    display: inline-block;
+    height: 300px;
+    max-height: 300px;
+    max-width: 100%;
+    min-height: 150px;
+    min-width: 100%;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
+    width: 100%;
+}
+
+    .preview-image-wrapper img {
+        height: 300px;
+        max-width: 100%;
+    }
+
+.btn_remove_image,
+.btn_remove {
+    background: #ddd;
+    border-radius: 50% !important;
+    color: #000;
+    display: inline-block;
+    font-size: 18px;
+    height: 30px;
+    line-height: 30px;
+    position: absolute;
+    right: 5px;
+    text-align: center;
+    top: 5px;
+    width: 30px;
+}
+
+.image-box-actions a {
+    color: #337ab7 !important;
+    text-shadow: none !important;
+}
+
+input[type=checkbox] {
+    cursor: pointer;
+    margin: 0 0.5rem 0 0;
+    position: relative;
+    top: 0;
+}
+
+    input[type=checkbox]:checked:before {
+        transform: rotate(-45deg) scale(1);
+    }
+
+    input[type=checkbox]:before {
+        border-color: #58b3f0;
+        border-style: none none solid solid;
+        border-width: 2px;
+        content: "";
+        height: 5px;
+        left: 1px;
+        margin: auto;
+        position: absolute;
+        right: 0;
+        top: 0.2em;
+        transform: rotate(-45deg) scale(0);
+        transition: transform .4s cubic-bezier(.45, 1.8, .5, .75);
+        width: 10px;
+        z-index: 1;
+    }
+
+    input[type=checkbox]:checked:after {
+        border-color: #58b3f0;
+    }
+
+    input[type=checkbox]:after {
+        background: #fff;
+        border: 1px solid #c4cdd5;
+        border-radius: 3px;
+        bottom: 0;
+        content: "";
+        cursor: pointer;
+        height: 16px;
+        left: -1px;
+        margin: auto;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 16px;
+    }
+
+.onoffswitch {
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    width: 45px;
+}
+
+.onoffswitch-label {
+    border: 2px solid #e6e6e6;
+    border-radius: 20px !important;
+    -webkit-border-radius: 20px !important;
+    -moz-border-radius: 20px !important;
+    cursor: pointer;
+    display: block;
+    overflow: hidden;
+}
+
+.onoffswitch-switch {
+    background: #a1a1a1;
+    border: 2px solid #e6e6e6;
+    border-radius: 50% !important;
+    bottom: 0;
+    height: 20px;
+    margin: 0;
+    position: absolute;
+    right: 26px;
+    top: 0;
+    transition: all .3s ease-in 0s;
+    width: 20px;
+}
+
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    background-color: #d64635;
+    right: 0;
+}
+
+.onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+
+.onoffswitch-inner {
+    margin-left: -100%;
+    transition: margin .3s ease-in 0s;
+    width: 200%;
+}
+
+    .onoffswitch-inner:before {
+        background-color: #eee;
+        color: #e6e6e6;
+        content: "";
+        padding-left: 10px;
+    }
+
+    .onoffswitch-inner:after,
+    .onoffswitch-inner:before {
+        box-sizing: border-box;
+        color: #fff;
+        float: left;
+        font-size: 15px;
+        font-weight: 700;
+        height: 15px;
+        line-height: 15px;
+        padding: 0;
+        width: 50%;
+    }
+
+    .onoffswitch-inner:after {
+        background-color: #eee;
+        color: #a38282;
+        content: "";
+        padding-right: 10px;
+        text-align: right;
+    }
+
+    .onoffswitch-inner:after,
+    .onoffswitch-inner:before {
+        box-sizing: border-box;
+        color: #fff;
+        float: left;
+        font-size: 15px;
+        font-weight: 700;
+        height: 15px;
+        line-height: 15px;
+        padding: 0;
+        width: 50%;
+    }
+
+input[type=checkbox] {
+    cursor: pointer;
+    margin: 0 0.5rem 0 0;
+    position: relative;
+    top: 0;
+}
+
+.onoffswitch-checkbox {
+    display: none;
+}
+
+.card-title {
+    font-size: 14px !important;
+}
+
+.card-header {
+    border-radius: 0 !important;
+    padding: 0.6rem 0.5rem !important;
+}
+
+.card-danger:not(.card-outline) > .card-header {
+    background-color: #4b545c !important;
+}
+
+.card-body {
+    padding: 0.5rem !important;
+}
+
+label {
+    margin-bottom: 0 !important;
+}

@@ -1,0 +1,43 @@
+﻿@model IEnumerable<TaxBarAssociation.Models.Comment>
+
+@{
+    void RenderComment(IEnumerable<TaxBarAssociation.Models.Comment> comments)
+    {
+        foreach (var comment in comments)
+        {
+            <li class="comment-body" id="comment-@comment.CommentID" data-id="@comment.CommentID">
+                <div class="avatar"><img src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="avatar" /></div>
+                <div class="comment">
+                    <h6>@comment.Username</h6>
+                    <div class="date">Feb 28, 2019 - 08:07 pm</div>
+                    <p>@comment.CommentText</p>
+                    <a class="reply-link" href="@comment.CommentID" data-id="@comment.CommentID">Reply</a>
+                    @{
+                        var children = Model.Where(x => x.ParentId == comment.CommentID).ToList();
+                        if (children.Count() > 0)
+                        {
+                            <ul data-parentid="@comment.CommentID" class="replies-list">
+                                @{
+                                    RenderComment(children);
+                                }
+                            </ul>
+                        }
+                    }
+                </div>
+            </li>
+        }
+    }
+}
+<div class="entry-widget-title">
+    <h4><span class="comments-number">@Model.Count()</span> comments</h4>
+</div>
+<div class="entry-widget-content">
+    <ul class="comments-list">
+        @{
+            RenderComment(Model.Where(x => x.ParentId == 0));
+        }
+    </ul>
+    <!-- End .comments-list-->
+</div>
+
+

@@ -1,0 +1,112 @@
+﻿@model TaxBarAssociation.Models.ReferenceDocument
+
+@{
+    ViewData["Title"] = "EditDocument";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+<br />
+<br />
+<div class="container">
+    <div class="col-md-12">
+        <div class="row">
+
+            <div class="col-md-12">
+
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="text-center">Edit Document</h5>
+                    </div>
+                    <div class="card-body">
+                        <form asp-action="EditDocument" enctype="multipart/form-data" method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="Id" />
+                            <div class="form-group">
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label asp-for="DocumentName" class="control-label"></label>
+
+                                        <input type="file" name="file" accept="application/pdf" class="form-control" />
+
+
+                                        <span asp-validation-for="DocumentName" class="text-danger"></span>
+                                    </div>
+                              
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <label class="control-label"> PDF Name</label>
+                                                <input readonly asp-for="DocumentName" class="form-control" />
+                                            </div>
+                                            <div class="col-md-4 mr-6">
+                                                <label>Delete?</label>
+                                                <br />
+                                                <a class="btn btn-danger fa fa-trash-alt btn-sm"  onclick="MyDelete(@Model.Id)" ></a>
+                                            </div>
+                                        </div>
+
+                                       
+                                    </div>
+
+                                   
+                                </div>
+                          
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="DocumentYear" class="control-label"></label>
+                                <select name="year" asp-for="DocumentYear" class="form-control">
+                                    <option>Select Year</option>
+                                    @foreach (var year in ViewBag.Years)
+                                    {
+                                        <option value="@year">@year</option>
+                                    }
+
+                                </select>
+                                <span asp-validation-for="DocumentYear" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="update" class="btn btn-warning" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section scripts{
+ <script>
+    
+     function MyDelete(id) {
+
+         if (confirm("Are you Shure Want to Delete?") == true) {
+            
+             fetch('/ReferenceDocument/AlertDelete/' + id, {
+                 method: "Post",
+                 body: id,
+             })
+             then(response => response.json())
+                 .then((res) => {
+                     if (res == true) {
+                       
+                         window.location.reload(true)
+                     }
+                     else
+                     {
+                         alert('Error not Delete');
+                     }
+                 })
+         }
+         else {
+
+         }
+     }
+    
+
+ </script>    
+
+}
